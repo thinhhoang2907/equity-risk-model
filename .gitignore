@@ -221,5 +221,6 @@ __marimo__/
 venv/
 .env
 data/raw/
-data/processed/
+#data/processed/
 .DS_Store
+data/figures/
