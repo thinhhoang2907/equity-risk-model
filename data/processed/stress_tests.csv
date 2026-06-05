@@ -1,0 +1,4 @@
+Period,N_Days,Ann_Vol,Max_Drawdown,Total_Return,Hist_VaR95,Hist_CVaR95
+COVID Crash,62,0.657,-0.3688,-0.1187,0.06123,0.10585
+2022 Rate Hikes,251,0.2535,-0.2619,-0.1428,0.02614,0.03564
+Full Period,1841,0.2102,-0.3688,2.2507,0.01858,0.03218
