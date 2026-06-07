@@ -6,9 +6,8 @@ applied to a 13-stock S&P 500 portfolio using 5 years of daily return data (2019
 Built to demonstrate factor-based risk decomposition, tail risk measurement, and 
 stress testing — core skills for Quantitative Risk and Data Science roles in finance.
 
-**[Live Demo →](https://equity-risk-model-thinh.streamlit.app/)**
+**[Demo](https://equity-risk-model-thinh.streamlit.app/)**
 
-![Dashboard Preview](data/figures/efficient_frontier.png)
 
 ---
 
@@ -108,17 +107,19 @@ Covariance estimated using both sample covariance and Ledoit-Wolf shrinkage
 
 ## Project Structure
 
+```
 equity-risk-model/
 ├── src/
 │   ├── data_loader.py       # Price + FF factor pipeline
 │   ├── factor_model.py      # OLS regressions, rolling betas
 │   ├── risk_metrics.py      # VaR, CVaR, decomposition, stress tests
-│   └── visualizations.py    # All charts
+│   └── visualizations.py   # All charts
 ├── app.py                   # Streamlit dashboard
 ├── data/
 │   ├── processed/           # Model outputs (CSVs)
 │   └── figures/             # Static chart exports
 └── requirements.txt
+```
 
 ## Limitations
 
