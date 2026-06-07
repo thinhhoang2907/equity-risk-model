@@ -333,21 +333,20 @@ def plot_efficient_frontier(excess_returns, n_portfolios=4000):
         r = excess_returns[ticker].mean() * 252
         v = excess_returns[ticker].std() * np.sqrt(252)
         ax.annotate(ticker, (v, r), textcoords="offset points",
-                    xytext=(5, 3), fontsize=7.5, color="white",
+                    xytext=(5, 3), fontsize=7.5, color="black",
                     fontweight="bold")
-        ax.scatter(v, r, color="white", s=30, zorder=4, alpha=0.7)
+        ax.scatter(v, r, color="black", s=30, zorder=4, alpha=0.7)
 
     ax.set_xlabel("Annualized Volatility", fontsize=11)
     ax.set_ylabel("Annualized Return", fontsize=11)
     ax.set_title("Efficient Frontier — 4,000 Random Portfolios",
                  fontsize=13, fontweight="bold", pad=15)
     ax.legend(fontsize=9)
-    ax.set_facecolor("#0D1117")
-    fig.patch.set_facecolor("#0D1117")
-    ax.tick_params(colors="white")
-    ax.xaxis.label.set_color("white")
-    ax.yaxis.label.set_color("white")
-    ax.title.set_color("white")
+    ax.set_facecolor("white")
+    fig.patch.set_facecolor("white")
+    ax.spines["bottom"].set_color("black")
+    ax.spines["left"].set_color("black")
+    ax.tick_params(colors="black")
 
     plt.tight_layout()
     _save_fig(fig, "efficient_frontier.png")
