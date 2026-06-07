@@ -13,6 +13,17 @@ warnings.filterwarnings("ignore")
 PROCESSED_DIR = "data/processed"
 FIGURES_DIR   = "data/figures"
 
+def _save_fig(fig, filename):
+    """
+    Saves figure to disk only if the figures directory exists and is writable.
+    Silently skips on Streamlit Cloud where the filesystem is read-only.
+    """
+    try:
+        os.makedirs(FIGURES_DIR, exist_ok=True)
+        fig.savefig(f"{FIGURES_DIR}/{filename}", dpi=150, bbox_inches="tight")
+        print(f"  ✓ {filename}")
+    except (OSError, PermissionError):
+        pass  # Running on Streamlit Cloud — skip saving, just display
 
 def load_all_outputs():
     """Loads all CSVs produced by Phases 2 and 3."""
@@ -66,8 +77,7 @@ def plot_factor_heatmap(loadings):
     ax.set_ylabel("Stock", fontsize=11)
 
     plt.tight_layout()
-    fig.savefig(f"{FIGURES_DIR}/factor_heatmap.png", dpi=150, bbox_inches="tight")
-    print("  ✓ factor_heatmap.png")
+    _save_fig(fig, "factor_heatmap.png")
     return fig
 
 
@@ -114,8 +124,7 @@ def plot_risk_decomposition(decomp):
     ax.axhline(y=100, color="gray", linestyle="--", linewidth=0.8, alpha=0.5)
 
     plt.tight_layout()
-    fig.savefig(f"{FIGURES_DIR}/risk_decomposition.png", dpi=150, bbox_inches="tight")
-    print("  ✓ risk_decomposition.png")
+    _save_fig(fig, "risk_decomposition.png")
     return fig
 
 
@@ -167,8 +176,7 @@ def plot_var_distribution(excess_returns, var_cvar):
                       edgecolor="#B71C1C", alpha=0.8))
 
     plt.tight_layout()
-    fig.savefig(f"{FIGURES_DIR}/var_distribution.png", dpi=150, bbox_inches="tight")
-    print("  ✓ var_distribution.png")
+    _save_fig(fig, "var_distribution.png")
     return fig
 
 
@@ -202,8 +210,7 @@ def plot_rolling_betas(rolling, highlight=["NVDA", "JNJ", "AAPL", "BAC"]):
     ax.set_ylim(-0.5, 3.5)
 
     plt.tight_layout()
-    fig.savefig(f"{FIGURES_DIR}/rolling_betas.png", dpi=150, bbox_inches="tight")
-    print("  ✓ rolling_betas.png")
+    _save_fig(fig, "rolling_betas.png")
     return fig
 
 
@@ -258,8 +265,7 @@ def plot_stress_tests(stress):
     plt.suptitle("Stress Test Comparison vs Full Period Baseline",
                  fontsize=13, fontweight="bold", y=1.01)
     plt.tight_layout()
-    fig.savefig(f"{FIGURES_DIR}/stress_tests.png", dpi=150, bbox_inches="tight")
-    print("  ✓ stress_tests.png")
+    _save_fig(fig, "stress_tests.png")
     return fig
 
 
@@ -344,9 +350,7 @@ def plot_efficient_frontier(excess_returns, n_portfolios=4000):
     ax.title.set_color("white")
 
     plt.tight_layout()
-    fig.savefig(f"{FIGURES_DIR}/efficient_frontier.png", dpi=150,
-                bbox_inches="tight", facecolor=fig.get_facecolor())
-    print("  ✓ efficient_frontier.png")
+    _save_fig(fig, "efficient_frontier.png")
 
     # Print max Sharpe weights for reference
     print("\n  Max Sharpe portfolio weights:")
