@@ -6,7 +6,7 @@ applied to a 13-stock S&P 500 portfolio using 5 years of daily return data (2019
 Built to demonstrate factor-based risk decomposition, tail risk measurement, and 
 stress testing — core skills for Quantitative Risk and Data Science roles in finance.
 
-**[Live Demo →](YOUR_STREAMLIT_URL_HERE)**
+**[Live Demo →](https://equity-risk-model-thinh.streamlit.app/)**
 
 ![Dashboard Preview](data/figures/efficient_frontier.png)
 
